@@ -1,9 +1,12 @@
+import logging
 import requests
 from datetime import datetime, UTC
 from abc import ABC, abstractmethod
 
 from config import API_KEY
 
+
+logger = logging.getLogger(__name__)
 
 class APIService(ABC):
 
@@ -36,6 +39,7 @@ class APIGeckoCoin(APIService):
         ]
 
     def get_historical_data(self, days: int) -> None:
+        logger.info("Getting historical data!")
         self.rows_historical = []
         for coin in self.COINS:
             coin_id = coin.get("id")
@@ -71,6 +75,7 @@ class APIGeckoCoin(APIService):
                     self.rows_historical.append(row)
 
     def get_snapshot(self) -> None:
+        logger.info("Getting snapshot!")
         self.rows_snapshot = []
         endpoint = f"{self.DEMO_API}/coins/markets"
         params = {
@@ -115,6 +120,7 @@ class APIGeckoCoin(APIService):
                 self.rows_snapshot.append(row)
 
     def get_metada(self) -> None:
+        logger.info("Getting metadata!")
         self.rows_metadata = []
         for currency in self.COINS:
             coin_id = currency.get("id")
