@@ -55,3 +55,4 @@ jobs:
             --platform managed \
             --service-account crypto-ingestion-sa@project-64bf9e5a-8b9a-4039-85a.iam.gserviceaccount.com \
             --allow-unauthenticated
+            --set-secrets API_KEY=API_KEY:latest,PROJECT_ID=PROJECT_ID:latest
