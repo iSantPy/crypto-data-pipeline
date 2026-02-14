@@ -53,8 +53,8 @@ def run_pipeline():
         logger.info("Getting current prices!")
         api_geckocoin_service.get_historical_data(days=0)  # current prices 
         logger.info("Loading data to temp and snapshot tables!")
-        # bq_dw_service.load_data_to_dw(client=client, rows=api_geckocoin_service.rows_historical, table_id=TEMP_HISTORIC_TABLE_ID)
-        # bq_dw_service.load_data_to_dw(client=client, rows=api_geckocoin_service.rows_snapshot, table_id=SNAPSHOT_TABLE_ID) 
+        bq_dw_service.load_data_to_dw(client=client, rows=api_geckocoin_service.rows_historical, table_id=TEMP_HISTORIC_TABLE_ID)
+        bq_dw_service.load_data_to_dw(client=client, rows=api_geckocoin_service.rows_snapshot, table_id=SNAPSHOT_TABLE_ID) 
 
         # Update historic table and calculate metrics (idempontency on)
         logger.info("Updating historic table and computing metrics!")
